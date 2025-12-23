@@ -4,7 +4,8 @@ type ApiError = {
   message?: string
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || ''
+const API_BASE =
+  typeof window === 'undefined' ? process.env.NEXT_PUBLIC_API_BASE_URL || '' : ''
 
 export async function apiRequest<T>(path: string, options: RequestInit = {}) {
   const token = getToken()
