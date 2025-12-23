@@ -2,7 +2,6 @@
 
 RBAC Configurator is an internal web application for defining and managing **roles** and **permissions** for a larger system. It provides a simple dashboard where authenticated administrators can create permissions, create roles, and link them together using a relational RBAC schema.
 
----
 
 ## Features
 
