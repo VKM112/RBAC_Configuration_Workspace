@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/dashboard/permissions": "pages/dashboard/permissions.js",
+  "/dashboard/access": "pages/dashboard/access.js",
+  "/dashboard/roles": "pages/dashboard/roles.js",
+  "/api/roles": "pages/api/roles.js",
+  "/api/permissions": "pages/api/permissions.js"
+}
