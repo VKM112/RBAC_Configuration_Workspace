@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+﻿import { Prisma } from '@prisma/client'
 import { Router, type NextFunction, type Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
@@ -10,7 +10,7 @@ const router = Router()
 const JWT_SECRET = process.env.JWT_SECRET
 const TOKEN_EXPIRES_IN = '7d'
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin@rbac.it').trim().toLowerCase()
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'rabc@admin'
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'rbac@admin'
 const ADMIN_USER_ID = process.env.ADMIN_USER_ID || 'admin'
 const BCRYPT_COST = 12
 const MIN_PASSWORD_LENGTH = 8
