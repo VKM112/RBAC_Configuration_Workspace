@@ -211,35 +211,47 @@ const PermissionsPage = () => {
           {loading ? (
             <p className="text-sm text-slate-500">Loading permissions...</p>
           ) : permissions.length ? (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {permissions.map((permission) => (
-                  <TableRow key={permission.id}>
-                    <TableCell className="font-semibold text-slate-900">{permission.name}</TableCell>
-                    <TableCell>{permission.description || 'N/A'}</TableCell>
-                    <TableCell>{formatDate(permission.createdAt)}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button variant="outline" size="sm" onClick={() => handleEdit(permission)}>
-                          Edit
-                        </Button>
-                        <Button variant="danger" size="sm" onClick={() => handleDelete(permission)}>
-                          Delete
-                        </Button>
-                      </div>
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table className="min-w-[720px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead className="text-left sm:text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {permissions.map((permission) => (
+                    <TableRow key={permission.id}>
+                      <TableCell className="font-semibold text-slate-900">{permission.name}</TableCell>
+                      <TableCell>{permission.description || 'N/A'}</TableCell>
+                      <TableCell>{formatDate(permission.createdAt)}</TableCell>
+                      <TableCell className="text-left sm:text-right">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleEdit(permission)}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="danger"
+                            size="sm"
+                            onClick={() => handleDelete(permission)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           ) : (
             <p className="text-sm text-slate-500">No permissions yet. Add the first one above.</p>
           )}

@@ -199,37 +199,49 @@ const RolesPage = () => {
           {loading ? (
             <p className="text-sm text-slate-500">Loading roles...</p>
           ) : roles.length ? (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Permissions</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {roles.map((role) => (
-                  <TableRow key={role.id}>
-                    <TableCell className="font-semibold text-slate-900">{role.name}</TableCell>
-                    <TableCell>
-                      <Badge>{role.permissionCount ?? 0} permissions</Badge>
-                    </TableCell>
-                    <TableCell>{formatDate(role.createdAt)}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button variant="outline" size="sm" onClick={() => handleEdit(role)}>
-                          Edit
-                        </Button>
-                        <Button variant="danger" size="sm" onClick={() => handleDelete(role)}>
-                          Delete
-                        </Button>
-                      </div>
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table className="min-w-[720px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Permissions</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead className="text-left sm:text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {roles.map((role) => (
+                    <TableRow key={role.id}>
+                      <TableCell className="font-semibold text-slate-900">{role.name}</TableCell>
+                      <TableCell>
+                        <Badge>{role.permissionCount ?? 0} permissions</Badge>
+                      </TableCell>
+                      <TableCell>{formatDate(role.createdAt)}</TableCell>
+                      <TableCell className="text-left sm:text-right">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleEdit(role)}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="danger"
+                            size="sm"
+                            onClick={() => handleDelete(role)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           ) : (
             <p className="text-sm text-slate-500">No roles yet. Add one above.</p>
           )}

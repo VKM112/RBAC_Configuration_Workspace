@@ -180,55 +180,59 @@ const LoginAccessPage = () => {
           {loading ? (
             <p className="text-sm text-slate-500">Loading users...</p>
           ) : users.length ? (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead>New Password</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell className="font-medium text-slate-900">{user.email}</TableCell>
-                    <TableCell>{formatDate(user.createdAt)}</TableCell>
-                    <TableCell className="min-w-[200px]">
-                      <Input
-                        type="password"
-                        value={passwordUpdates[user.id] || ''}
-                        onChange={(event) =>
-                          setPasswordUpdates((prev) => ({ ...prev, [user.id]: event.target.value }))
-                        }
-                        minLength={8}
-                        placeholder="New password"
-                      />
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handlePasswordUpdate(user.id)}
-                          disabled={updatingId === user.id}
-                        >
-                          {updatingId === user.id ? 'Updating...' : 'Update password'}
-                        </Button>
-                        <Button
-                          variant="danger"
-                          size="sm"
-                          onClick={() => handleDeleteUser(user.id, user.email)}
-                          disabled={updatingId === user.id}
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table className="min-w-[720px]">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead>New Password</TableHead>
+                    <TableHead className="text-left sm:text-right">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {users.map((user) => (
+                    <TableRow key={user.id}>
+                      <TableCell className="font-medium text-slate-900">{user.email}</TableCell>
+                      <TableCell>{formatDate(user.createdAt)}</TableCell>
+                      <TableCell className="min-w-[200px]">
+                        <Input
+                          type="password"
+                          value={passwordUpdates[user.id] || ''}
+                          onChange={(event) =>
+                            setPasswordUpdates((prev) => ({ ...prev, [user.id]: event.target.value }))
+                          }
+                          minLength={8}
+                          placeholder="New password"
+                        />
+                      </TableCell>
+                      <TableCell className="text-left sm:text-right">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handlePasswordUpdate(user.id)}
+                            disabled={updatingId === user.id}
+                          >
+                            {updatingId === user.id ? 'Updating...' : 'Update password'}
+                          </Button>
+                          <Button
+                            className="w-full sm:w-auto"
+                            variant="danger"
+                            size="sm"
+                            onClick={() => handleDeleteUser(user.id, user.email)}
+                            disabled={updatingId === user.id}
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           ) : (
             <p className="text-sm text-slate-500">No additional login users yet.</p>
           )}
